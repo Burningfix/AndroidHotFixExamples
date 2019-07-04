@@ -21,7 +21,7 @@ import dalvik.system.PathClassLoader;
  * Created by bruce on 11/14/15.
  */
 public class DexLoaderUtil {
-    private static final String TAG = "DexLoaderUtil";
+    private static final String TAG = "sanbo";
     public static final String SECONDARY_DEX_NAME = "lib.apk";
     public static final String THIRD_DEX_NAME = "lib2.apk";
     private static final int BUF_SIZE = 8 * 1024;
@@ -46,7 +46,7 @@ public class DexLoaderUtil {
                     new FileOutputStream(dexInternalStoragePath));
             byte[] buf = new byte[BUF_SIZE];
             int len;
-            while((len = bis.read(buf, 0, BUF_SIZE)) > 0) {
+            while ((len = bis.read(buf, 0, BUF_SIZE)) > 0) {
                 dexWriter.write(buf, 0, len);
             }
             dexWriter.close();
@@ -92,7 +92,7 @@ public class DexLoaderUtil {
 
     public static synchronized Boolean injectAboveEqualApiLevel14(
             String dexPath, String defaultDexOptPath, String nativeLibPath, String dummyClassName) {
-        Log.i(TAG, "--> injectAboveEqualApiLevel14");
+        Log.i(TAG, "--> injectAboveEqualApiLevel14 dexPath:" + dexPath + " ---- defaultDexOptPath:" + defaultDexOptPath + "-----nativeLibPath:" + nativeLibPath + "-----dummyClassName:" + dummyClassName);
         PathClassLoader pathClassLoader = (PathClassLoader) DexLoaderUtil.class.getClassLoader();
         DexClassLoader dexClassLoader = new DexClassLoader(dexPath, defaultDexOptPath, nativeLibPath, pathClassLoader);
         try {
